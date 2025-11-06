@@ -120,25 +120,27 @@ print(empleados_clear)
 # }
 # print(alumnos["notas"]["matematicas"])  #imprime 9
 #imprimir con varios alumnos 
-
+#Fallo: la clave no se puede repetir, porque en este caso, estoy poniendo nombre muchas veces, tengo que separarlo
 alumnos={
     "nombre":"Ana",
-    "edad":"16",
+    "edad": 16,
     "notas":{
         "matematicas":9,
         "lengua":10,
         "ingles":8,
     },
+
     "nombre":"Maria",
-    "edad":"17",
-    "notas":{
+    "edad": 17,
+    "notas": {
         "matematicas":7,
         "lengua":9,
         "ingles":10,
     },
+
     "nombre":"Luisa",
-    "edad":"16",
-    "notas":{
+    "edad": 16,
+    "notas": {
         "matematicas":8,
         "lengua":7,
         "ingles":9,
@@ -147,14 +149,15 @@ alumnos={
 }
 
 for alumno in alumnos:
-    print(alumnos)
-    # print(alumno["nombre"])
-    # print(alumno["edad"])
-    # #imprimir todas los datos a la vez o uno a uno
-    # print(alumno["notas"])
-    # #imprimir paso a paso
-    # for nota in alumno["notas"]:
-    #     print(notas["matematicas"])
-    #     print(notas["lengua"])
-    #     print(notas["ingles"])
+    print(alumno["nombre"])
+    print(alumno["edad"])
+    #imprimir todas los datos a la vez o uno a uno
+    print(alumno["notas"])
+     #imprimir paso a paso
+    for nota in alumno["notas"]:
+         print(notas["matematicas"])
+         print(notas["lengua"])
+         print(notas["ingles"])
+        
+       
     
