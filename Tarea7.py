@@ -61,7 +61,13 @@ def agregar_persona():
 
     nombre = input("Nombre: ")
     edad = int(input("Edad: "))
-    genero = input("Género: ")
+    #1.la edad de la persona agreagada no puede ser mayor de 120 alños
+    #comprueba la edad que sea menor de 120
+    while edad > 120:
+        print("La edad no puede ser mayor de 120 años. Intente de nuevo.")
+        edad = int(input("Edad: "))
+    genero = input("Género(Hombre/mujer): ")
+
 
     edificio[planta]["personas"].append(
         {"nombre": nombre, "edad": edad, "genero": genero}
@@ -106,3 +112,39 @@ def cambiar_comision():
 
     print(f"Comisión de {planta} actualizada a {nueva}€.")
 
+def main():
+    while True:
+        print("\n--- Bienvenido al sistema de gestión del edificio ---")
+        print("1. Mostrar información del edificio")
+        print("2. Agregar planta")
+        print("3. Agregar persona a una planta")
+        print("4. Calcular total comisión de la comunidad")
+        print("5. Eliminar persona de una planta")
+        print("6. Cambiar la comisión de comunidad de una planta")
+        print("0. Salir")
+        
+        option = int(input("\nSeleccione una opción:"))
+
+        print(option)
+        match option:
+            case 1:
+                mostrar_informacion()
+            case 2:
+                agregar_planta()
+            case 3:
+                agregar_persona()
+            case 4:
+                calcular_comision_total()
+            case 5:
+                eliminar_persona()
+            case 6:
+                cambiar_comision()
+            case 0:
+                print("Saliendo del sistema. ¡Hasta luego!")
+                break
+            case _:
+                print("Opción no válida. Por favor, intente de nuevo.")
+
+
+if __name__ == "__main__":
+    main()
