@@ -17,12 +17,12 @@ while password != password_correct:
 
 print("Contraseña correcta")
 
+
 # NameError: name 'true' is not defined
 # corregido 
-while True:
-    print("hello world")
-
-
+# while True:
+#     print("hello world")
+# va a ser un bucle infinito, se comenta para evitar problemas
 numero = int(input("Introduce un número para calcular su factorial: "))
 
 resultado = 1  
@@ -33,14 +33,17 @@ while i <= numero:
     i += 1            
 
 print("El factorial es:", resultado)
+
+
 a = 0
 b = 1
-
 while a <= 100:
     print(a)
     c = a + b
     a = b
     b = c
+
+
 num = int(input("Introduce un número: "))
 i = 1
 
