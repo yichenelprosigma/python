@@ -1,4 +1,4 @@
-A=[[1,2],[3,4][5,6]]
+A=[[1,2],[3,4],[5,6]]
 #Filas: 0–2
 #Columnas: 0–1
 
@@ -12,6 +12,8 @@ M = int(input("Ingresa el número de columnas (M): "))
 # Crear la matriz de NxM con valores 0
 matriz = [[0 for _ in range(M)] for _ in range(N)]
 
+#puedes también usar directamente:
+print(matriz)
 # Imprimir la matriz
 print("Matriz generada:")
 for fila in matriz:

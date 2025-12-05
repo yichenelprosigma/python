@@ -26,4 +26,5 @@ matriz6=[[0 for _ in range(columnas)] for _ in range(filas)]
 #crear una fila con m columnas
 #cada columna tiene el valor de 0
 # _ significa que no nos importa el valor de la variable
+
 print(matriz6)
