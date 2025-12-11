@@ -1,14 +1,23 @@
-n=int(input("Ingrese el número de filas de la matriz: "))
-m=int(input("Ingrese el número de columnas de la matriz: "))
+#Aquí está mi explicación y el código solicitado.
+# Pedir una matriz 3x3 columna por columna y mostrarla progresivamente
 
-print("Es una matriz de",n,"x",m)
+matriz = [[0, 0, 0] for _ in range(3)]  # Inicializamos matriz 3x3 con ceros
 
-matriz=[]
-for i in range(n):
-    fila=[]
-    for j in range(m):
-        valor=int(input(f"valor [{i}][{j}]: "))
-        fila.append(valor)
-    matriz.append(fila)
+# Recorremos columna por columna
+for columnas in range(3):
+    print(f"Ingrese los valores de la columna {columnas+1}:")
+    for fila in range(3):
+        valor = int(input(f"Fila {fila+1}: "))
+        matriz[fila][columnas] = valor
+    
+    # Mostrar la matriz parcialmente completada hasta la columna actual
+    print("Matriz actual:")
+    for fila in matriz:
+        # Mostrar solo hasta la columna actual + 1
+        print(fila[:columnas+1])
+    print()  # Línea en blanco para separar pasos
 
-print(matriz)
+# Al final imprimir la matriz completa
+print("Matriz final completa:")
+for fila in matriz:
+    print(fila)
