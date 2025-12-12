@@ -26,7 +26,7 @@
 #Aquí está mi explicación y el código solicitado.
 # Pedir una matriz 3x3 columna por columna y mostrarla progresivamente
 
-
+                                                            #Modificación del ejercicio 1#
 matriz = [[0, 0, 0] for _ in range(3)]  # Inicializamos matriz 3x3 con ceros
 
 # Recorremos columna por columna
@@ -35,8 +35,6 @@ for columnas in range(3):
     for fila in range(3):
         if columnas==fila:
             matriz[fila][columnas] = 2
-
-    
     # Mostrar la matriz parcialmente completada hasta la columna actual
     print("Matriz actual:")
     for fila in matriz:
