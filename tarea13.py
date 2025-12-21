@@ -22,15 +22,20 @@ for fila in MatrizB:
     print(fila)
 
 # Paso 2: Transpuesta de las matrices
-TranspuestaA = list(zip(*MatrizA))
-TranspuestaB = list(zip(*MatrizB))
-
+Matriz_TraspuestaA=[[0 for j in range(len(MatrizA[0]))] for i in range(len(MatrizA))]
+for i in range(len(MatrizA)):
+    for j in range(len(MatrizA[0])):
+       Matriz_TraspuestaA[j][i]=MatrizA[i][j]
+Matriz_TraspuestaB=[[0 for j in range(len(MatrizB[0]))] for i in range(len(MatrizB))]
+for i in range(len(MatrizB)):
+    for j in range(len(MatrizB[0])):
+       Matriz_TraspuestaB[j][i]=MatrizB[i][j]
 print("\nTranspuesta de la Matriz A:")
-for fila in TranspuestaA:
+for fila in Matriz_TraspuestaA:
     print(list(fila))
 
 print("\nTranspuesta de la Matriz B:")
-for fila in TranspuestaB:
+for fila in Matriz_TraspuestaB:
     print(list(fila))
 
 # Paso 3: Suma de las dos matrices
