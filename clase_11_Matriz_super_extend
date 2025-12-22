@@ -1,0 +1,28 @@
+matriz = [
+    [3, 12, 1],
+    [5, 7, 9],
+    [0, 4, 6]
+]
+#encontrar el mayor numero de una matriz
+mayor=matriz[0][0]
+
+for i in range(len(matriz)):
+    for j in range(len(matriz[i])):
+        if(matriz[i][j]> mayor):
+            mayor= matriz[i][j]
+print("El valor mayor:", mayor)
+
+# contar cuantos valores pares hay en la matriz
+contador=0
+for i in range (len(matriz)):
+    for j in range(len(matriz[i])):
+        if matriz[i][j]%2==0:
+            contador+=1
+print("cantidad de números pares", contador)
+
+#imprimir el diagonal principal de una matriz
+for i in range(len(matriz)):
+    for j in range(len(matriz[i])):
+        if i == j:
+            print(matriz[i][j])
+            
