@@ -26,7 +26,39 @@ for i in range(len(matriz)):
         if i == j:
             print(matriz[i][j])
 #tarea: imprimir el diagonal inversa
+# matriz= [
+#     [1,2],
+#     [2,1],
+# ]
+# #len(matriz)= tamaño de la lista
+# #len(matriz[0])= tamaño de la columna
+# if (len(matriz)== len(matriz[0])):
+#     print("Es una matriz cuadrada")
 
+#Imprimir el resultado de la suma de cada fila de una matriz
+# matriz= [
+#      [1,2,-3],
+#      [4,-5,6],
+#      [-7,8,9]
+# ]
+# for fila in range(len(matriz)):
+#     suma=0
+#     for columnas in range(len(matriz[0])):
+#         suma+=matriz[fila][columnas]
+#     print("la suma de las fila", fila," es igual a", suma)
+
+#reemplazar los números que sean divisores de 15 a un 10
+matriz = [  [5,1,3],
+            [15,2,6],
+            [1,7,9]
+]
+for fila in range(len(matriz)):
+    for columnas in range(len(matriz[0])):
+        if matriz[fila][columnas] != 0:
+            if 15%matriz[fila][columnas]==0:
+                matriz[fila][columnas]=0
+                print("es divisor de 15, reemplazar el valor")
+print(matriz)
 #Multiplicación de Matriz
 A=[[1,2,3],
    [4,5,6],]

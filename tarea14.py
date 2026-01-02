@@ -25,9 +25,38 @@ if edad >= 18 and sexo == "masculino":
 else:
     print("No puede entrar")
 #tarea 4
-numero = int(input("Introduce un número: "))
+# numero = int(input("Introduce un número: "))
 
-if numero % 3 == 0 or numero % 5 == 0:
-    print("Es múltiplo de 3 o de 5")
-else:
-    print("No es múltiplo de 3 ni de 5")
+# if numero % 3 == 0 and numero % 5 == 0:
+#     print("Es múltiplo de 3 o de 5")
+# else:
+#     print("No es múltiplo de 3 ni de 5")
+
+# numero = int(input("Introduce un número: "))
+
+# if numero % 3 == 0 and numero % 5 == 0:
+#     for num1 in range(numero):
+#         if num1 != 0:
+#             if numero % num1 == 0:
+#                 print("los divisores del número", num1)
+
+# else:
+#     print("No es múltiplo de 3 ni de 5")
+
+#tarea 2
+# lista = [2, -1, -5, -8, 10, 45, 8, 92]
+# positivo = True
+# suma=0
+# for num in lista:
+#     if num <= 0:
+#         print(num)
+#     else:
+#         suma+=num
+    
+        
+        
+
+# if positivo:
+#     print("Todos los números son positivos")
+# else:
+#     print("No todos los números son positivos")
