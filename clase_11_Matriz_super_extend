@@ -1,30 +1,30 @@
-matriz = [
-    [3, 12, 1],
-    [5, 7, 9],
-    [0, 4, 6]
-]
-#encontrar el mayor numero de una matriz
-mayor=matriz[0][0]
+# matriz = [
+#     [3, 12, 1],
+#     [5, 7, 9],
+#     [0, 4, 6]
+# ]
+# #encontrar el mayor numero de una matriz
+# mayor=matriz[0][0]
 
-for i in range(len(matriz)):
-    for j in range(len(matriz[i])):
-        if(matriz[i][j]> mayor):
-            mayor= matriz[i][j]
-print("El valor mayor:", mayor)
+# for i in range(len(matriz)):
+#     for j in range(len(matriz[i])):
+#         if(matriz[i][j]> mayor):
+#             mayor= matriz[i][j]
+# print("El valor mayor:", mayor)
 
-# contar cuantos valores pares hay en la matriz
-contador=0
-for i in range (len(matriz)):
-    for j in range(len(matriz[i])):
-        if matriz[i][j]%2==0:
-            contador+=1
-print("cantidad de números pares", contador)
+# # contar cuantos valores pares hay en la matriz
+# contador=0
+# for i in range (len(matriz)):
+#     for j in range(len(matriz[i])):
+#         if matriz[i][j]%2==0:
+#             contador+=1
+# print("cantidad de números pares", contador)
 
-#imprimir el diagonal principal de una matriz
-for i in range(len(matriz)):
-    for j in range(len(matriz[i])):
-        if i == j:
-            print(matriz[i][j])
+# #imprimir el diagonal principal de una matriz
+# for i in range(len(matriz)):
+#     for j in range(len(matriz[i])):
+#         if i == j:
+#             print(matriz[i][j])
 #tarea: imprimir el diagonal inversa
 # matriz= [
 #     [1,2],
@@ -47,19 +47,42 @@ for i in range(len(matriz)):
 #         suma+=matriz[fila][columnas]
 #     print("la suma de las fila", fila," es igual a", suma)
 
-#reemplazar los números que sean divisores de 15 a un 10
-matriz = [  [5,1,3],
-            [15,2,6],
-            [1,7,9]
-]
-for fila in range(len(matriz)):
-    for columnas in range(len(matriz[0])):
-        if matriz[fila][columnas] != 0:
-            if 15%matriz[fila][columnas]==0:
-                matriz[fila][columnas]=0
-                print("es divisor de 15, reemplazar el valor")
-print(matriz)
+# #reemplazar los números que sean divisores de 15 a un 10
+# matriz = [  [5,1,3],
+#             [15,2,6],
+#             [1,7,9]
+# ]
+# for fila in range(len(matriz)):
+#     for columnas in range(len(matriz[0])):
+#         if matriz[fila][columnas] != 0:
+#             if 15%matriz[fila][columnas]==0:
+#                 matriz[fila][columnas]=0
+#                 print("es divisor de 15, reemplazar el valor")
+# print(matriz)
+# matrizr= [[0 for _ in range(len(matriza))] for _ in range(len(matrizb[0]))]
+
 #Multiplicación de Matriz
-A=[[1,2,3],
-   [4,5,6],]
-B=[[7,8],[9,10],[11,12]]
+# 2x3
+matriza=[[2,3,5],
+         [7,2,4],]
+# 3X2
+matrizb=[[1,6],
+         [7,2],
+         [0,-5],]
+#paso 1: comprobar que el tamaño del número de la fila de la matriz A sea igual al número de columnas de la matriz B
+if (len(matriza[0]) == len(matrizb)):
+    print("Se pueden multiplicar las matrices")
+    # paso2:código de crear una matriz final
+    matrizc= [[0 for _ in range(len(matriza))] for _ in range(len(matrizb[0]))]
+    print(len(matriza))
+    print(len(matrizb[0]))
+
+else:
+    print("No se pueden multiplicar las matrices")
+#paso 3: recorrer dos matrices
+for i in range(len(matriza)): #recorrer filas de la matriz A
+    for j in range(len(matrizb[0])): #filas de la matriz B y columna de de la matriz de A
+        matrizc[i][j]=0
+        for k in range(len(matrizb)): #columnas de la matriz B
+            matrizc[i][j] += matriza[i][k] * matrizb[k][j]
+        print(matrizc)
