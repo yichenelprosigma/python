@@ -82,7 +82,12 @@ else:
 #paso 3: recorrer dos matrices
 for i in range(len(matriza)): #recorrer filas de la matriz A
     for j in range(len(matrizb[0])): #filas de la matriz B y columna de de la matriz de A
-        matrizc[i][j]=0
+        # matrizc[i][j]=0
         for k in range(len(matrizb)): #columnas de la matriz B
             matrizc[i][j] += matriza[i][k] * matrizb[k][j]
         print(matrizc)
+# Un programa con varias funciones 
+#1. Mostrar las matrices//hay 3 matrices,
+#2 Mostrar las matrices traspuestas
+#3. Mostrar la suma de dos matrices // 1,2 al usuario
+#4. Mostrar la multiplicación de dos matrices 1 y 3 matriz
