@@ -82,19 +82,117 @@ def showTranspose(name):
     #impirmir el MatrixT
     for fila in matrizT:
         print(fila)
+# ctrl+f=para buscar una palabra
+def sumofmatrix(matrixA,MatrixB):
+    #comprobar que dos matrices están en el diccionario
+    if matrixA not in matrixArray or MatrixB not in matrixArray:
+        print("Unas de las matrices seleccionados no existen")
+        return
+    matriz1= matrixArray[matrixA]
+    matriz2= matrixArray[MatrixB]
+    #comprobar las dimensiones sean iguales
+    if len (matriz1) != len(matriz2) or len(matriz1[0]) != len(matriz2[0]):
+        print("No se pueden realizar la suma, puesto que las dimensiones son distintas")
+        return
+    #crear una matrix vacía para guardar el resultado de la suma
+    suma_de_las_matrices=[[0 for _ in range(len(matriz1[0]))] for _ in range(len(matriz1))]
 
-matriz01=[[2,3,5],
+    for i in range(len(matriz1)):
+        for j in range (len(matriz1[0])):
+            suma_de_las_matrices[i][j]=matriz1[i][j]+ matriz2[i][j]
+    print("Imprimir la suma:")
+    for i in range(len(suma_de_las_matrices)):
+        print("[", end=" ")
+        for j in range(len(suma_de_las_matrices[0])):
+            print(suma_de_las_matrices[i][j], end= ", ")
+        print("]")
+def multiplyofmatrix(name1,name2):
+    if name1 not in matrixArray or name2 not in matrixArray:
+        print("No se pueden realizar la suma, puesto que las dimensiones son distintas")
+        return
+    matrix1= matrixArray[name1]
+    matrix2= matrixArray[name2]
+    #comando para replicar la linea entera alt+ shift + arriba/ abajo
+    if(len(matrix1[0]!= len(matrix2))):
+        print("no se puede realizar la multiplicación, puesto que N de fila de matrizA no coincide con la N columna de matrixB. ")
+    #la matriz vacía para el resultado de la multiplicación
+    #columnas de B y filas A
+    multiplicación_matriz=[[0 for _ in range(len(matrix1))]for _ in range (matrix2[0])]
+    for i in range(len(matrix1)):
+        for j in range(len(matrix2[0])):
+            for k in range(len(matrix2)):
+                multiplicación_matriz[i][j]+= matrix1[i][k] * matrix2[k][j]
+    
+    for i in range(len(multiplicación_matriz)):
+        print("[", end=" ")
+        for j in range(len(multiplicación_matriz[0])):
+            print(multiplicación_matriz[i][j], end= ", ")
+        print("]")
+def sumofmatrix(matrixA,MatrixB):
+     if matrixA not in matrixArray or MatrixB not in matrixArray:
+        print("Unas de las matrices seleccionados no existen")
+        return
+     matrix1=matrixArray[matrixA]
+     matrix2=matrixArray[MatrixB]
+def sumTaskMatrices():
+
+    matrixA = "matrix6"
+    matrixB = "matrix7"
+
+    # comprobar que existen
+    if matrixA not in matrixArray or matrixB not in matrixArray:
+        print("Las matrices no existen")
+        return
+
+    matriz1 = matrixArray[matrixA]
+    matriz2 = matrixArray[matrixB]
+
+    # comprobar dimensiones
+    if len(matriz1) != len(matriz2) or len(matriz1[0]) != len(matriz2[0]):
+        print("No se pueden sumar, dimensiones distintas")
+        return
+
+    # crear matriz vacía
+    suma = [[0 for _ in range(len(matriz1[0]))] for _ in range(len(matriz1))]
+
+    # sumar
+    for i in range(len(matriz1)):
+        for j in range(len(matriz1[0])):
+            suma[i][j] = matriz1[i][j] + matriz2[i][j]
+
+    print("Imprimir la suma (matrix6 + matrix7):")
+
+    for i in range(len(suma)):
+        print("[", end=" ")
+        for j in range(len(suma[0])):
+            print(suma[i][j], end=", ")
+        print("]")
+w
+matriz01=[[2,3,5]
          [7,2,4],]
-
 matriz02=[[1,6],
          [7,2],
          [0,-5]]
-# matrix diccionario
+matriz03=[[1,1,1],
+         [2,2,2],]
+matrix04 = [
+     [2, 3, 5],
+     [7, 2, 4]
+ ]
+
+matrix05 = [
+     [1, 6],
+     [7, 2],
+    [0, -5]
+ ]
 matrixArray={}
 
 def main():
-    matrixArray["matrixA"]=matriz01
-    matrixArray["matrixB"]=matriz02
+    matrixArray["matrix1"]=matriz01
+    matrixArray["matrix2"]=matriz02
+    matrixArray["matrix3"]= matriz03
+    matrixArray["matrix4"]=matrix04
+    matrixArray["matrix5"]=matrix05
     print(matrixArray)
     while True:
         print("\n--- Bienvenido al sistema de gestión del edificio ---")
@@ -103,8 +201,9 @@ def main():
         print("3. Agregar una nueva matriz")
         print("4. Eliminar una matriz")
         print("5. Mostrar la traspuesta de una matriz")
-        print("6. Eliminar persona de una planta")
-        print("7. Cambiar la comisión de comunidad de una planta")
+        print("6. Mostrar la suma de dos matrices")
+        print("7. Mostrar la multiplicación de dos matrices")
+        print("8. Suma automática (matrix4 + matrix5)")
         print("0. Salir")
         
         option = int(input("\nSeleccione una opción: "))
@@ -125,8 +224,11 @@ def main():
                 columna= int(input("introduzca el número de la columna:  "))
                 createMatrix(fila, columna)    
             case 4:
+                for name in matrixArray:
+                    print(name)
                 print("Eliminar una matriz seleccionada")
-               
+                matriz_elimninar=input("elige la matriz que quieres eliminar ")
+                deleteMatrix(matrix)               
             case 5:
                 #Mostrar solo los nombres
                 for name in matrixArray:
@@ -135,8 +237,27 @@ def main():
                 matriz_traspuesta=input("Elige la matriz que quieres mostrar la trapuestas ")
                 showTranspose(matriz_traspuesta)
                
-            # case 6:
-             
+            case 6:
+                showAllMatrix()
+                matrixA=input("Elige la matriz A para sumar ")
+                matrixB=input("Elige la matriz B para sumar ")
+                sumofmatrix(matrixA,matrixB)
+            case 7:
+                showAllMatrix()
+                # ¡elegir matrices con sui nombre solo !
+                matrixA= input("Elige la matriz A para multiplicar")
+                matrixB= input("Elige la matriz B para multiplicar")
+                multiplyofmatrix(matrixA,matrixB)
+            case 8:
+
+                print("Sumando matrices nuevas matrix6 + matrix7")
+
+                matrixA = "matrix6"
+                matrixB = "matrix7"
+
+                sumofmatrix(matrixA, matrixB)
+
+
             case 0:
                 print("Saliendo del sistema...")
                 break
@@ -146,3 +267,15 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+#tarea 
+# matrix1 = [
+#     [2, 3, 5],
+#     [7, 2, 4]
+# ]
+
+# matrix2 = [
+#     [1, 6],
+#     [7, 2],
+#     [0, -5]
+# ]
