@@ -113,11 +113,11 @@ def multiplyofmatrix(name1,name2):
     matrix1= matrixArray[name1]
     matrix2= matrixArray[name2]
     #comando para replicar la linea entera alt+ shift + arriba/ abajo
-    if(len(matrix1[0]!= len(matrix2))):
+    if (len(matrix1[0])!= len(matrix2)):
         print("no se puede realizar la multiplicación, puesto que N de fila de matrizA no coincide con la N columna de matrixB. ")
     #la matriz vacía para el resultado de la multiplicación
     #columnas de B y filas A
-    multiplicación_matriz=[[0 for _ in range(len(matrix1))]for _ in range (matrix2[0])]
+    multiplicación_matriz=[[0 for _ in range(len(matrix1))]for _ in range(len(matrix2[0]))]
     for i in range(len(matrix1)):
         for j in range(len(matrix2[0])):
             for k in range(len(matrix2)):
@@ -128,17 +128,17 @@ def multiplyofmatrix(name1,name2):
         for j in range(len(multiplicación_matriz[0])):
             print(multiplicación_matriz[i][j], end= ", ")
         print("]")
+
+
 def sumofmatrix(matrixA,MatrixB):
      if matrixA not in matrixArray or MatrixB not in matrixArray:
         print("Unas de las matrices seleccionados no existen")
         return
      matrix1=matrixArray[matrixA]
      matrix2=matrixArray[MatrixB]
-def sumTaskMatrices():
 
-    matrixA = "matrix6"
-    matrixB = "matrix7"
 
+def sumTaskMatrices(matrixA,matrixB):
     # comprobar que existen
     if matrixA not in matrixArray or matrixB not in matrixArray:
         print("Las matrices no existen")
@@ -160,15 +160,15 @@ def sumTaskMatrices():
         for j in range(len(matriz1[0])):
             suma[i][j] = matriz1[i][j] + matriz2[i][j]
 
-    print("Imprimir la suma (matrix6 + matrix7):")
+    print("Imprimir la suma (matrix4 + matrix5):")
 
     for i in range(len(suma)):
         print("[", end=" ")
         for j in range(len(suma[0])):
             print(suma[i][j], end=", ")
         print("]")
-w
-matriz01=[[2,3,5]
+
+matriz01=[[2,3,5],
          [7,2,4],]
 matriz02=[[1,6],
          [7,2],
@@ -177,14 +177,13 @@ matriz03=[[1,1,1],
          [2,2,2],]
 matrix04 = [
      [2, 3, 5],
-     [7, 2, 4]
+     [7, 2, 4],
  ]
 
 matrix05 = [
-     [1, 6],
-     [7, 2],
-    [0, -5]
- ]
+    [1, 6],
+    [7, 2],
+    [0, -5] ]
 matrixArray={}
 
 def main():
@@ -250,13 +249,12 @@ def main():
                 multiplyofmatrix(matrixA,matrixB)
             case 8:
 
-                print("Sumando matrices nuevas matrix6 + matrix7")
+                print("Sumando matrices nuevas matrix04 + matrix05")
 
-                matrixA = "matrix6"
-                matrixB = "matrix7"
+                matrixA = "matrix4"
+                matrixB = "matrix5"
 
-                sumofmatrix(matrixA, matrixB)
-
+                sumTaskMatrices(matrixA,matrixB)
 
             case 0:
                 print("Saliendo del sistema...")
