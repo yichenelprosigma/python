@@ -1,64 +1,105 @@
-#¿para que sirve una función?
-#función sirve para reutilizar los códigos
+# #¿para que sirve una función?
+# #función sirve para reutilizar los códigos
 
+# # a=10
+# # b=5
+
+# # print(a+b)
+
+# # c=1
+# # d=2
+
+# # print(c+d)
+
+# # e= -1
+# # f=-5
+# # print(e+f)
+# #definir variables
 # a=10
 # b=5
+# #implementación de la función suma
 
-# print(a+b)
+# #def= definición
+# #suma = nombre de la función
+# #valor 1= primer parámetro
+# #valor 2= segundo parámetro
+# def suma(valor1, valor2):
+#     print(valor1+valor2)
 
-# c=1
-# d=2
+# #llamada de la función suma
+# suma(a,b)
+# suma(4,10)
 
-# print(c+d)
+# #implementación de la función helloworld
+# def say_hello():
+#     print("hello world")
+# say_hello()
 
-# e= -1
-# f=-5
-# print(e+f)
-#definir variables
-a=10
-b=5
-#implementación de la función suma
+# # la diferencia entre print vs return
 
-#def= definición
-#suma = nombre de la función
-#valor 1= primer parámetro
-#valor 2= segundo parámetro
-def suma(valor1, valor2):
-    print(valor1+valor2)
+# def suma2(valor1,valor2):
+#     return valor1 + valor2
 
-#llamada de la función suma
-suma(a,b)
-suma(4,10)
+# resultado=suma2(10,10)*2
+# print(resultado)
 
-#implementación de la función helloworld
-def say_hello():
+# #cualquiar cosa que está después de return no hace nada
+# def test():
+#     return 10
+
+# #hacer la potencia 2 de un numero, parametros es valor1
+# def square(valor1):
+#     return valor1 * valor1
+
+# print(square(5))
+
+# year_of_born=int(input("Introduzca tu año de nacimiento:"))
+# actualYear= int(input("¿El año actual?"))
+
+# def calcuteAge(year_of_born,actualyear):
+#     age=actualYear-year_of_born
+#     print("Año de nacimiento:", year_of_born)
+#     print("Año actual:", actualyear)
+#     print("Su edad es", age ,"años")
+# calcuteAge(year_of_born,actualYear)
+
+#05/02/26
+fullname="perez"
+#sin parámetro:
+def hello():
     print("hello world")
-say_hello()
+#con parámetro:
+def hello1(name1,name2):
+    #una variable local
+    nameF=name1+name2
+    # una variable local usando una variable global
+    nameF2=name1+name2
+    
+    nameF="María"
+    #indica que es una variable global
+    global fullname
+    fullname="123"
+    #modificar variable global
+    # fullname="Maria Perez"
+    print("hello", nameF)
+    print("hello", nameF2)
+    print(fullname)
 
-# la diferencia entre print vs return
+hello()
+hello1("Juan", "Pérez")
 
-def suma2(valor1,valor2):
-    return valor1 + valor2
+# parámetro por defecto de una función
+def function1(country="Spain"):
+    print("Soy de "+ country)
+function1("china")
+function1()
 
-resultado=suma2(10,10)*2
-print(resultado)
+# def function2(name="anonimo", country):#error
+#     print(name,country)
+# function2(,"china")#da error
 
-#cualquiar cosa que está después de return no hace nada
-def test():
-    return 10
-
-#hacer la potencia 2 de un numero, parametros es valor1
-def square(valor1):
-    return valor1 * valor1
-
-print(square(5))
-
-year_of_born=int(input("Introduzca tu año de nacimiento:"))
-actualYear= int(input("¿El año actual?"))
-
-def calcuteAge(year_of_born,actualyear):
-    age=actualYear-year_of_born
-    print("Año de nacimiento:", year_of_born)
-    print("Año actual:", actualyear)
-    print("Su edad es", age ,"años")
-calcuteAge(year_of_born,actualYear)
+def function2(country,name="Anonimo",gender="Women"):
+    print(name,gender,country)
+function2("Spain")
+function2("EEUU","Jonny")
+function2("Austria","Juan","Man")
