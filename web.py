@@ -1,4 +1,4 @@
-import streamlit as st
+import streamlit as st #para una interfaz de una página web
 import google.generativeai as genai # Si usas la API de Gemini
 from PIL import Image
 
