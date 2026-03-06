@@ -3,7 +3,7 @@ import math
 # problema6.py
 # Tarea: Desarrolle en python un programa que reciba como entrada las longitudes de los dos catetos de un
 # triángulo rectángulo, y que calcule como salida la longitud de la hipotenusa del triángulo, dado por el
-# teorema de Pitágoras. Necesitará para ello math.sqrt(), import math (importacion de la libreria)
+# teorema de Pitágoras. Necesitará para ello math.sqrt(), import math (importación de la libreria)
 # Introduzca cateto a: 7
 # Introduzca cateto b: 5 
 # El valor de la hipotenusa es 8.6
