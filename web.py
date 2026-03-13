@@ -4,70 +4,151 @@ from PIL import Image
 import cv2
 import tempfile
 import os
+import time
+from datetime import datetime
+import pandas as pd
 
-# 1. Configuración de la IA (Gemini 1.5 Flash es ideal para tu proyecto)
-genai.configure(api_key="TU_API_KEY_AQUÍ")
-model = genai.GenerativeModel('gemini-1.5-flash')
+# =================================================================
+# [CLASS] CONFIGURACIÓN Y ESTILOS DE LA INTERFAZ
+# =================================================================
+class UIStyle:
+    @staticmethod
+    def apply_custom_css():
+        st.markdown("""
+            <style>
+            @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;500&display=swap');
+            :root { --primary-glow: #ff4b4b; --bg-dark: #0d1117; }
+            html, body, [class*="css"] { font-family: 'Fira Code', monospace; }
+            .main { background-color: var(--bg-dark); color: #c9d1d9; }
+            .stButton>button {
+                background: linear-gradient(90deg, #ff4b4b 0%, #a50000 100%);
+                border: none; color: white; border-radius: 4px;
+                font-weight: bold; width: 100%; transition: 0.3s;
+            }
+            .stButton>button:hover { box-shadow: 0 0 20px var(--primary-glow); transform: scale(1.01); }
+            .history-card {
+                padding: 15px; border-left: 4px solid var(--primary-glow);
+                background: #161b22; margin: 10px 0; border-radius: 0 8px 8px 0;
+            }
+            </style>
+        """, unsafe_allow_html=True)
 
-# 2. Diseño de la página (Frontend mejorado)
-st.set_page_config(page_title="Upload.com", page_icon="🚀", layout="wide")
-st.title("🚀 Upload.com")
-st.markdown("---")
+# =================================================================
+# [CLASS] MOTOR DE INTELIGENCIA ARTIFICIAL
+# =================================================================
+class AIEngine:
+    def __init__(self, api_key):
+        genai.configure(api_key=api_key)
+        self.model_flash = genai.GenerativeModel('gemini-1.5-flash')
+        self.model_pro = genai.GenerativeModel('gemini-1.5-pro')
 
-# 3. Panel lateral
-with st.sidebar:
-    st.image("https://cdn-icons-png.flaticon.com/512/2103/2103633.png", width=100)
-    st.write("### Panel de Control")
-    modo = st.selectbox("¿Qué quieres hacer?", ["Analizar Imagen", "Analizar Vídeo", "Resumir Texto"])
-    st.info("Aprovecha tu tiempo con este programa.")
+    def analyze_image(self, prompt, img, fast_mode=True):
+        model = self.model_flash if fast_mode else self.model_pro
+        response = model.generate_content([prompt, img])
+        return response.text
 
-# 4. Lógica de subida de archivos (Ahora acepta vídeo mp4 y avi)
-archivo_subido = st.file_uploader("Arrastra tu archivo aquí", type=['png', 'jpg', 'jpeg', 'txt', 'mp4', 'avi'])
-
-if archivo_subido is not None:
-    if modo == "Analizar Imagen":
-        imagen = Image.open(archivo_subido)
-        st.image(imagen, caption='Imagen lista para procesar', width=500)
+    def upload_and_analyze_video(self, path, prompt):
+        video_file = genai.upload_file(path=path)
+        # Espera activa de procesamiento
+        while video_file.state.name == "PROCESSING":
+            time.sleep(2)
+            video_file = genai.get_file(video_file.name)
         
-        pregunta = st.text_input("¿Qué quieres saber de la imagen?", "Explica qué ves en esta imagen de forma detallada")
-        if st.button("Preguntar a la IA"):
-            with st.spinner('La IA está pensando...'):
-                respuesta = model.generate_content([pregunta, imagen])
-                st.subheader("Resultado:")
-                st.info(respuesta.text)
+        response = self.model_flash.generate_content([prompt, video_file])
+        return response.text
 
-    elif modo == "Analizar Vídeo":
-        # Guardamos el vídeo temporalmente para que OpenCV lo lea
-        tfile = tempfile.NamedTemporaryFile(delete=False) 
-        tfile.write(archivo_subido.read())
-        
-        st.video(archivo_subido) # Muestra el vídeo en la web
-        
-        if st.button("Extraer frame y analizar con IA"):
-            with st.spinner('Extrayendo fotograma con OpenCV...'):
-                cap = cv2.VideoCapture(tfile.name)
-                success, frame = cap.read()
-                if success:
-                    # Convertir el frame de OpenCV (BGR) a PIL (RGB) para Gemini
-                    frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-                    img_para_ia = Image.fromarray(frame_rgb)
-                    
-                    st.image(img_para_ia, caption="Frame capturado", width=400)
-                    
-                    # Enviar a la IA
-                    respuesta = model.generate_content(["Analiza este frame del vídeo y dime qué sucede", img_para_ia])
-                    st.subheader("Análisis del vídeo:")
-                    st.success(respuesta.text)
-                cap.release()
-        os.remove(tfile.name) # Borrar archivo temporal
+# =================================================================
+# [MAIN] LÓGICA DE LA APLICACIÓN
+# =================================================================
+def main():
+    UIStyle.apply_custom_css()
+    
+    if 'history_db' not in st.session_state:
+        st.session_state.history_db = []
 
-    elif modo == "Resumir Texto":
-        texto = archivo_subido.read().decode("utf-8")
-        st.text_area("Contenido:", texto, height=150)
+    # --- SIDEBAR ---
+    with st.sidebar:
+        st.image("https://cdn-icons-png.flaticon.com/512/2103/2103633.png", width=60)
+        st.title("UPLOAD PRO v4.1")
         
-        if st.button("Resumir ahora"):
-            respuesta = model.generate_content(f"Resume este texto de forma profesional: {texto}")
-            st.success(respuesta.text)
+        api_key = st.text_input("Gemini API Key:", type="password")
+        menu = st.radio("SISTEMAS:", ["⚡ Dashboard", "🎮 Gaming Analytics", "📂 Historial"])
+        
+        st.divider()
+        if st.button("🗑️ LIMPIAR SESIÓN"):
+            st.session_state.history_db = []
+            st.rerun()
 
-else:
-    st.info("👋 ¡Hola! Sube una imagen, un texto o un vídeo para que Upload.com empiece a trabajar.")
+    if not api_key:
+        st.warning("⚠️ Introduce tu API Key en el lateral para comenzar.")
+        return
+
+    # Inicializar motor si hay API Key
+    ai_engine = AIEngine(api_key)
+
+    # --- MÓDULO: DASHBOARD (IMAGEN) ---
+    if menu == "⚡ Dashboard":
+        st.header("🖼️ Visión Neuronal")
+        uploaded_img = st.file_uploader("Sube una imagen:", type=['png', 'jpg', 'jpeg'])
+        
+        if uploaded_img:
+            img = Image.open(uploaded_img)
+            col1, col2 = st.columns(2)
+            with col1:
+                st.image(img, use_container_width=True)
+            with col2:
+                prompt = st.text_area("Instrucciones para la IA:", "Describe esta imagen.")
+                if st.button("ANALIZAR"):
+                    with st.spinner("Procesando..."):
+                        res = ai_engine.analyze_image(prompt, img)
+                        st.session_state.history_db.append({"type": "📸 Imagen", "data": res, "time": datetime.now()})
+                        st.info(res)
+
+    # --- MÓDULO: GAMING ANALYTICS (VIDEO) ---
+    elif menu == "🎮 Gaming Analytics":
+        st.header("🎬 Analizador de Clips")
+        
+
+["Image of video editing software interface"]
+
+        video_up = st.file_uploader("Sube tu clip:", type=['mp4', 'mov', 'avi'])
+        
+        if video_up:
+            # Creamos el temporal de forma segura
+            with tempfile.NamedTemporaryFile(delete=False, suffix='.mp4') as tfile:
+                tfile.write(video_up.read())
+                temp_path = tfile.name
+
+            st.video(temp_path)
+            action = st.selectbox("Acción:", ["Resumen de jugada", "Detectar errores", "Crear título viral"])
+            
+            if st.button("PROCESAR VIDEO"):
+                with st.status("Subiendo y analizando vídeo...") as status:
+                    try:
+                        res = ai_engine.upload_and_analyze_video(temp_path, action)
+                        st.session_state.history_db.append({"type": "🎥 Vídeo", "data": res, "time": datetime.now()})
+                        st.write(res)
+                        status.update(label="Análisis completo", state="complete")
+                    except Exception as e:
+                        st.error(f"Error: {e}")
+                    finally:
+                        # Limpieza del archivo temporal
+                        if os.path.exists(temp_path):
+                            os.remove(temp_path)
+
+    # --- MÓDULO: HISTORIAL ---
+    elif menu == "📂 Historial":
+        st.header("📜 Archivo de Sesión")
+        if not st.session_state.history_db:
+            st.info("Aún no hay registros.")
+        else:
+            for entry in reversed(st.session_state.history_db):
+                st.markdown(f"""
+                <div class="history-card">
+                    <small>{entry['time'].strftime('%H:%M:%S')} | <b>{entry['type']}</b></small><br>
+                    {entry['data']}
+                </div>
+                """, unsafe_allow_html=True)
+
+if __name__ == "__main__":
+    main()
