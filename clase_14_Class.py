@@ -63,11 +63,12 @@ print(student2.claseStudent)
 
 # Crear una clase con métodos
 class Cat:
+    #atributos = valor / datos
     def __init__(self, name, age):
         self.name=name
         self.age=age
 
-    # Métodos 
+    # Métodos= acciones que realiza
     def meowing(self):
         return f"{self.name} dice: miao miao "
     def correr(self, Energía):
