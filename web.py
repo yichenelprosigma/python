@@ -111,10 +111,15 @@ def main():
 
 ["Image of video editing software interface"]
 
+# --- MÓDULO: GAMING ANALYTICS (VIDEO) ---
+    elif menu == "🎮 Gaming Analytics":
+        st.header("🎬 Analizador de Clips")
+        
+        # Esta línea debe estar alineada exactamente con el st.header de arriba
         video_up = st.file_uploader("Sube tu clip:", type=['mp4', 'mov', 'avi'])
         
         if video_up:
-            # Creamos el temporal de forma segura
+            # El código dentro del IF lleva un nivel más de sangría
             with tempfile.NamedTemporaryFile(delete=False, suffix='.mp4') as tfile:
                 tfile.write(video_up.read())
                 temp_path = tfile.name
