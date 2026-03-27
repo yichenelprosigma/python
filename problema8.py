@@ -1,0 +1,1 @@
+#guardar los números en una lista, finalmente imprimir la lista f
