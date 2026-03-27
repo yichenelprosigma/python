@@ -12,6 +12,7 @@ def polinomio(numeroa,numerob,numeroc):
     if math.sqrt(numerob**2-4*numeroa*numeroc) <0:
         print("No se puede hacer esta ecuación")
     else:
+        #se puede mejorar 
         ecuación1=(-numerob+math.sqrt(numerob**2-4*numeroa*numeroc))/2*numeroa
         ecuación2=(-numerob-math.sqrt(numerob**2-4*numeroa*numeroc))/2*numeroa
         print(int(ecuación1))
