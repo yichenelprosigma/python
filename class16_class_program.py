@@ -24,9 +24,9 @@ class Account:
     # Mostrar saldo
     def displayinformation(self):
         print("\n=================== Información de la cuenta ==========================")
-        print(f"Número de la cuenta:{self.accountNumber}")
-        print(f"Titular de la cuenta:{self.HolderName}")
-        print(f"Saldo de la cuenta:{self.balance} euros")
+        print(f"Número de la cuenta: {self.accountNumber}")
+        print(f"Titular de la cuenta: {self.HolderName}")
+        print(f"Saldo de la cuenta: {self.balance} euros")
 
     
 
