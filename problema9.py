@@ -3,7 +3,7 @@ def invertir_con_lista():
     # Convertir a lista, invertir la lista y unirla de nuevo
     lista_digitos = list(numero)
     lista_digitos.reverse()
-
-    print(lista_digitos)
+    for i in lista_digitos:
+        print(i,end="")
 numero = input("Introduzca un número: ")
 invertir_con_lista()
