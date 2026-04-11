@@ -103,3 +103,28 @@ def function2(country,name="Anonimo",gender="Women"):
 function2("Spain")
 function2("EEUU","Jonny")
 function2("Austria","Juan","Man")
+# parámetro de tipo lista (cadena,número, lista, diccionario)
+def function3(food):
+    for x in food:
+        print(x)
+function3(["meat","vegetable","fruits"])
+#Key= value para signar datos a cada parámetro
+def function4(child3,child2,child1):
+    print(child1)
+    print(child2)
+    print(child3)
+child1="child1"
+child2="child2"
+child3="child3"
+function4(child2="Pepe",child1="Fernando",child3="Ana")
+function4(child2="Pepe",child1="Fernando",child3="Ana")
+#cualquier parámetro o cambiar de parámetro
+def function5(*params):
+    print(params[0])
+    print(params[1])
+    print(params[2])
+function5("Pepe","Ana","Maria","Juan","Fernado","Jose")
+
+#cuando una función no hay códigos
+def function6():
+    pass #sirve para cuando no hay ningún código dentro de la función
