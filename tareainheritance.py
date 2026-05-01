@@ -12,8 +12,9 @@ class Perro(Animal):
         super().__init__(nombre, edad)
         self.raza = raza
 
+    # esto se denomina override(Sobre escribe la función)
     def hacer_sonido(self):
-        print("Guau guau")
+         print("Guau guau")
 
     def correr(self):
         print(f"{self.nombre} está corriendo")
